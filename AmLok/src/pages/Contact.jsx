@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import SectionHeading from '../components/common/SectionHeading';
 import { faqItems } from '../data/siteData';
@@ -26,6 +26,17 @@ export default function Contact() {
   const [submissionStatus, setSubmissionStatus] = useState('');
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [openFaq, setOpenFaq] = useState(0);
+
+  useEffect(() => {
+    if (submissionStatus !== 'success') return undefined;
+
+    const timer = window.setTimeout(() => {
+      setSubmissionStatus('');
+      setSubmissionMessage('');
+    }, 5000);
+
+    return () => window.clearTimeout(timer);
+  }, [submissionStatus]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -58,6 +69,29 @@ export default function Contact() {
     else if (formData.message.trim().length > 5000) nextErrors.message = 'Message must be 5000 characters or fewer.';
 
     return nextErrors;
+  };
+
+  const handleMessageTemplate = () => {
+    const template = `Hello AmLok Team,
+
+We are interested in discussing our technology requirements and would like to understand how AmLok can support us.
+
+Our current requirement:
+[Briefly describe your business or technology requirement]
+
+Key areas we would like to discuss:
+- [Requirement / capability 1]
+- [Requirement / capability 2]
+- [Requirement / capability 3]
+
+Please let us know a convenient time to connect and discuss this further.
+
+Thank you.`;
+
+    setFormData((current) => ({ ...current, message: template }));
+    setErrors((current) => ({ ...current, message: '' }));
+    setSubmissionStatus('');
+    setSubmissionMessage('');
   };
 
   const handleSubmit = async (event) => {
@@ -134,12 +168,12 @@ export default function Contact() {
             <div className="form-row">
               <label>
                 <span>Full Name</span>
-                <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} maxLength={100} autoComplete="name" required aria-invalid={Boolean(errors.fullName)} />
+                <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} maxLength={100} autoComplete="name" placeholder="Enter your full name" required disabled={isSubmitting} aria-invalid={Boolean(errors.fullName)} />
                 {errors.fullName && <small className="error-message">{errors.fullName}</small>}
               </label>
               <label>
                 <span>Email</span>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} maxLength={254} autoComplete="email" required aria-invalid={Boolean(errors.email)} />
+                <input type="email" name="email" value={formData.email} onChange={handleChange} maxLength={254} autoComplete="email" placeholder="you@company.com" required disabled={isSubmitting} aria-invalid={Boolean(errors.email)} />
                 {errors.email && <small className="error-message">{errors.email}</small>}
               </label>
             </div>
@@ -147,32 +181,53 @@ export default function Contact() {
             <div className="form-row">
               <label>
                 <span>Phone</span>
-                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} maxLength={30} autoComplete="tel" required aria-invalid={Boolean(errors.phone)} />
+                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} maxLength={30} autoComplete="tel" placeholder="+1 555 123 4567" required disabled={isSubmitting} aria-invalid={Boolean(errors.phone)} />
                 {errors.phone && <small className="error-message">{errors.phone}</small>}
               </label>
               <label>
                 <span>Company</span>
-                <input type="text" name="company" value={formData.company} onChange={handleChange} maxLength={150} autoComplete="organization" required aria-invalid={Boolean(errors.company)} />
+                <input type="text" name="company" value={formData.company} onChange={handleChange} maxLength={150} autoComplete="organization" placeholder="Enter your company name" required disabled={isSubmitting} aria-invalid={Boolean(errors.company)} />
                 {errors.company && <small className="error-message">{errors.company}</small>}
               </label>
             </div>
 
             <label>
               <span>Service Required</span>
-              <select name="service" value={formData.service} onChange={handleChange} required aria-invalid={Boolean(errors.service)}>
+              <select name="service" value={formData.service} onChange={handleChange} required disabled={isSubmitting} aria-invalid={Boolean(errors.service)}>
                 <option value="">Select a service</option>
                 <option value="Application Development">Application Development</option>
                 <option value="Cloud & DevOps">Cloud & DevOps</option>
                 <option value="Data & Analytics">Data & Analytics</option>
                 <option value="AI & Automation">AI & Automation</option>
                 <option value="Quality Engineering">Quality Engineering</option>
+                <option value="IT Consulting">IT Consulting</option>
               </select>
               {errors.service && <small className="error-message">{errors.service}</small>}
             </label>
 
-            <label>
-              <span>Message</span>
-              <textarea name="message" value={formData.message} onChange={handleChange} rows="5" maxLength={5000} required aria-invalid={Boolean(errors.message)} />
+            <label className="message-field">
+              <span className="message-label-row">
+                <span>Message</span>
+                <button
+                  type="button"
+                  className="message-template-btn"
+                  onClick={handleMessageTemplate}
+                  disabled={isSubmitting}
+                >
+                  Use message template
+                </button>
+              </span>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows="5"
+                maxLength={5000}
+                placeholder="Tell us about your requirements, goals, timeline, or the challenge you would like to discuss..."
+                required
+                disabled={isSubmitting}
+                aria-invalid={Boolean(errors.message)}
+              />
               {errors.message && <small className="error-message">{errors.message}</small>}
             </label>
 

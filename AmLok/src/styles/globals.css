@@ -460,6 +460,15 @@ button {
     min-height: 0;
     padding: 8px 0 0;
   }
+  .message-label-row {
+    align-items: flex-start;
+  }
+
+  .message-template-btn {
+    flex-shrink: 0;
+    padding: 0.36rem 0.62rem;
+    font-size: 0.74rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -3316,6 +3325,73 @@ textarea:focus {
 #career-look-4:checked ~ .career-look-track-window .career-look-card:nth-child(5) {
   opacity: 1;
   background: linear-gradient(180deg, rgba(22, 92, 173, 0.15), rgba(22, 92, 173, 0.02));
+}
+
+
+.message-field {
+  gap: 10px;
+}
+
+.message-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.message-template-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(11, 61, 145, 0.16);
+  border-radius: 999px;
+  padding: 0.38rem 0.72rem;
+  background: rgba(11, 61, 145, 0.05);
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.message-template-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: rgba(11, 61, 145, 0.09);
+  border-color: rgba(11, 61, 145, 0.28);
+  color: var(--primary-deep);
+}
+
+.message-template-btn:focus-visible {
+  outline: 3px solid rgba(76, 163, 255, 0.18);
+  outline-offset: 2px;
+}
+
+.message-template-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #8292a8;
+  opacity: 1;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  background: #f4f7fb;
+  color: #718096;
+  border-color: rgba(17, 33, 61, 0.08);
+}
+
+select:disabled {
+  opacity: 0.78;
+}
+
+.contact-form button:disabled {
+  cursor: not-allowed;
 }
 
 /* Tablet: 2 visible items, 6 possible positions. */
