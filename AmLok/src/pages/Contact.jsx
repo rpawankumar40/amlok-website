@@ -62,7 +62,6 @@ export default function Contact() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("1")
     if (isSubmitting) return;
 
     const nextErrors = validateForm();
@@ -89,7 +88,7 @@ export default function Contact() {
 
     try {
       await emailjs.send(emailJsConfig.serviceId, emailJsConfig.templateId, {
-        full_name: formData.fullName.trim(),
+        fullName: formData.fullName.trim(),
         email: formData.email.trim(),
         phone: formData.phone.trim(),
         company: formData.company.trim(),
