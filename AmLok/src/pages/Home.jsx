@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SectionHeading from '../components/common/SectionHeading';
 import HeroVisualCarousel from '../components/home/HeroVisualCarousel';
+import HomeLogoMarquee from '../components/home/HomeLogoMarquee';
 import {
   differentiators,
   industries,
   services,
   stats,
-  technologies,
   transformationAreas,
 } from '../data/siteData';
 import DigitalTransformationVisual from '../components/home/DigitalTransformationVisual';
+import { clientLogos, technologyLogos } from '../data/homeLogoData';
+import heroVideoSrc from '../assets/videos/vid1.mp4'
 
 function AnimatedCounter({ value, suffix, label }) {
   const [count, setCount] = useState(0);
@@ -200,21 +202,25 @@ export default function Home() {
             eyebrow="Technology Expertise"
             title="Platforms and engineering capabilities designed for scale"
           />
-          <div className="tech-categories home-tech-matrix">
-            {Object.entries(technologies).map(([group, list], index) => (
-              <div className="tech-group" key={group}>
-                <div className="home-tech-group-heading">
-                  <span className="home-tech-number">{String(index + 1).padStart(2, '0')}</span>
-                  <h3>{group}</h3>
-                </div>
-                <div className="tag-list">
-                  {list.map((tech) => (
-                    <span key={tech} className="tech-tag">{tech}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <HomeLogoMarquee
+            logos={technologyLogos}
+            direction="left"
+            label="Technology expertise logos, moving right to left"
+          />
+        </div>
+      </section>
+
+      <section className="page-section muted-section home-clients-section">
+        <div className="container">
+          <SectionHeading
+            eyebrow="Our Clients"
+            title="Trusted by organizations across industries"
+          />
+          <HomeLogoMarquee
+            logos={clientLogos}
+            direction="right"
+            label="Client company logos, moving left to right"
+          />
         </div>
       </section>
 

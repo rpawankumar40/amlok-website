@@ -7,7 +7,7 @@ const initialState = {
   fullName: '',
   email: '',
   phone: '',
-  company: '',
+  // company: '',
   service: '',
   message: '',
   website: '',
@@ -62,8 +62,8 @@ export default function Contact() {
       || (phone.match(/\d/g) ?? []).length > 15 || phone.length > 30) {
       nextErrors.phone = 'Enter a valid international phone number.';
     }
-    if (!formData.company.trim()) nextErrors.company = 'Company name is required.';
-    else if (formData.company.trim().length > 150) nextErrors.company = 'Company name must be 150 characters or fewer.';
+    // if (!formData.company.trim()) nextErrors.company = 'Company name is required.';
+    // else if (formData.company.trim().length > 150) nextErrors.company = 'Company name must be 150 characters or fewer.';
     if (!formData.service.trim()) nextErrors.service = 'Please choose a service.';
     if (!formData.message.trim()) nextErrors.message = 'Message is required.';
     else if (formData.message.trim().length > 5000) nextErrors.message = 'Message must be 5000 characters or fewer.';
@@ -125,7 +125,7 @@ Thank you.`;
         fullName: formData.fullName.trim(),
         email: formData.email.trim(),
         phone: formData.phone.trim(),
-        company: formData.company.trim(),
+        // company: formData.company.trim(),
         service: formData.service,
         message: formData.message.trim(),
       }, {
@@ -173,7 +173,7 @@ Thank you.`;
               </label>
               <label>
                 <span>Email</span>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} maxLength={254} autoComplete="email" placeholder="you@company.com" required disabled={isSubmitting} aria-invalid={Boolean(errors.email)} />
+                <input type="email" name="email" value={formData.email} onChange={handleChange} maxLength={254} autoComplete="email" placeholder="you@gmail.com" required disabled={isSubmitting} aria-invalid={Boolean(errors.email)} />
                 {errors.email && <small className="error-message">{errors.email}</small>}
               </label>
             </div>
@@ -184,26 +184,26 @@ Thank you.`;
                 <input type="tel" name="phone" value={formData.phone} onChange={handleChange} maxLength={30} autoComplete="tel" placeholder="+1 555 123 4567" required disabled={isSubmitting} aria-invalid={Boolean(errors.phone)} />
                 {errors.phone && <small className="error-message">{errors.phone}</small>}
               </label>
+
               <label>
+                <span>Service Required</span>
+                <select name="service" value={formData.service} onChange={handleChange} required disabled={isSubmitting} aria-invalid={Boolean(errors.service)}>
+                  <option value="">Select a service</option>
+                  <option value="Application Development">Application Development</option>
+                  <option value="Cloud & DevOps">Cloud & DevOps</option>
+                  <option value="Data & Analytics">Data & Analytics</option>
+                  <option value="AI & Automation">AI & Automation</option>
+                  <option value="Quality Engineering">Quality Engineering</option>
+                  <option value="IT Consulting">IT Consulting</option>
+                </select>
+                {errors.service && <small className="error-message">{errors.service}</small>}
+              </label>
+              {/* <label>
                 <span>Company</span>
                 <input type="text" name="company" value={formData.company} onChange={handleChange} maxLength={150} autoComplete="organization" placeholder="Enter your company name" required disabled={isSubmitting} aria-invalid={Boolean(errors.company)} />
                 {errors.company && <small className="error-message">{errors.company}</small>}
-              </label>
+              </label> */}
             </div>
-
-            <label>
-              <span>Service Required</span>
-              <select name="service" value={formData.service} onChange={handleChange} required disabled={isSubmitting} aria-invalid={Boolean(errors.service)}>
-                <option value="">Select a service</option>
-                <option value="Application Development">Application Development</option>
-                <option value="Cloud & DevOps">Cloud & DevOps</option>
-                <option value="Data & Analytics">Data & Analytics</option>
-                <option value="AI & Automation">AI & Automation</option>
-                <option value="Quality Engineering">Quality Engineering</option>
-                <option value="IT Consulting">IT Consulting</option>
-              </select>
-              {errors.service && <small className="error-message">{errors.service}</small>}
-            </label>
 
             <label className="message-field">
               <span className="message-label-row">
@@ -245,10 +245,10 @@ Thank you.`;
             <div className="info-card contact-card">
               <h3>Connect with AmLok</h3>
               <ul className="contact-info">
-                <li>Email: <a href="mailto:hr@amlokit.com">hr@amlokit.com</a></li>
-                <li>Phone: <a href="tel:+910000000000">+91 00000 00000</a></li>
-                <li>Office: 16 Tech Avenue, 30 N Gould St, STE R, Sheridan, WY 82801, USA</li>
-                <li>Business hours: Mon - Sat, 9:00 AM - 6:30 PM</li>
+                <li><b>Email:</b> <a href="mailto:hr@amlokit.com">hr@amlokit.com</a></li>
+                <li><b>Phone:</b> <a href="tel:+910000000000">+1 201-361-9988</a></li>
+                <li><b>Office:</b> 30 N Gould St, STE R, Sheridan, WY 82801, USA</li>
+                <li><b>Business hours:</b> Mon - Sat, 9:00 AM - 6:30 PM</li>
               </ul>
             </div>
 

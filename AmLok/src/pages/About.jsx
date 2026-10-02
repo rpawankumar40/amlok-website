@@ -1,4 +1,5 @@
 import SectionHeading from '../components/common/SectionHeading';
+import aboutusvideo from '../assets/videos/aboutUs1.mp4'
 
 const values = [
   'Client-first execution',
@@ -107,10 +108,15 @@ export default function About() {
             </div>
 
             <div className="leadership-visual" aria-label="AmLok engineering team collaboration">
-              <img
-                src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1400&q=85"
-                alt="Technology team collaborating on an enterprise project"
-                loading="lazy"
+              <video
+                src={aboutusvideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+                tabIndex={-1}
               />
               <div className="leadership-visual-overlay">
                 <span>AmLok delivery culture</span>

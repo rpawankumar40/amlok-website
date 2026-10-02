@@ -5,7 +5,7 @@ const companyLinks = [
   { label: 'About Us', to: '/about' },
   { label: 'Leadership', to: '/about' },
   { label: 'Careers', to: '/careers' },
-  { label: 'Insights', to: '/insights' },
+//   { label: 'Insights', to: '/insights' },
   { label: 'Contact Us', to: '/contact' },
 ];
 
@@ -16,6 +16,7 @@ const serviceLinks = [
   { label: 'AI & Automation', to: '/solutions' },
   { label: 'Quality Engineering', to: '/services' },
   { label: 'Enterprise Solutions', to: '/solutions' },
+  { label: 'IT Consulting', to: '/services' },
 ];
 
 const industryLinks = [
@@ -138,7 +139,7 @@ export default function Footer() {
                 <span className="contact-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><path d="M6.6 2.5a1.5 1.5 0 0 1 1.5 1.5v1.23A13.6 13.6 0 0 1 18.8 17.9h1.7a1.5 1.5 0 0 1 1.5 1.5v2.7a2 2 0 0 1-2 2A18.8 18.8 0 0 1 4.5 4.5a2 2 0 0 1 2-2h2.1Zm1.5 2.9a12 12 0 0 0 10.5 10.5v-1.73l-2.12-1.05-1.27.6a2.3 2.3 0 0 1-2.31-.45L9.7 11.7a2.3 2.3 0 0 1-.45-2.31l.6-1.27L8.8 7.3V5.4Z" /></svg>
                 </span>
-                <a href="tel:+910000000000">+91 00000 00000</a>
+                <a href="tel:+910000000000">+1 201-361-9988</a>
               </li>
               <li>
                 <span className="contact-icon" aria-hidden="true">

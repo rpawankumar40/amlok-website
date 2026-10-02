@@ -8,6 +8,10 @@ import Industries from '../pages/Industries';
 import Insights from '../pages/Insights';
 import Careers from '../pages/Careers';
 import Contact from '../pages/Contact';
+import ServiceDetail from '../pages/ServiceDetail';
+import SolutionDetail from '../pages/SolutionDetail';
+import IndustryDetail from '../pages/IndustryDetail';
+import NotFound from '../pages/NotFound';
 
 export default function AppRoutes() {
   return (
@@ -16,11 +20,15 @@ export default function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/solutions" element={<Solutions />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
+        {/* <Route path="/solutions" element={<Solutions />} /> */}
+        <Route path="/solutions/:slug" element={<SolutionDetail />} />
         <Route path="/industries" element={<Industries />} />
-        <Route path="/insights" element={<Insights />} />
+        <Route path="/industries/:slug" element={<IndustryDetail />} />
+        {/* <Route path="/insights" element={<Insights />} /> */}
         <Route path="/careers" element={<Careers />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

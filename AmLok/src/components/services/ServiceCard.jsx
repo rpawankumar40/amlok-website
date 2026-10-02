@@ -20,7 +20,7 @@ export default function ServiceCard({ category }) {
         ))}
       </ul>
 
-      <Link to="/services" className="service-card-link">
+      <Link to={`/services/${category.slug}`} className="service-card-link">
         Explore Service <span aria-hidden="true">→</span>
       </Link>
     </article>
